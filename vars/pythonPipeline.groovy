@@ -18,12 +18,12 @@ def call (body) {
         }
         when {
           anyOf {
-            branch 'develop'
+            branch pattern: 'develop'
             branch pattern: 'release-v*'
             branch pattern: 'feature-*'
             branch pattern: 'bugfix-*'
             branch pattern: 'hotfix-*'
-            tag pattern: 'v*'
+            branch pattern: 'v*'
           }
         }
       }
