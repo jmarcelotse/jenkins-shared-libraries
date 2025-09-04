@@ -28,5 +28,26 @@ def call (body) {
         }
       }
     }
+    stages {
+      stage('SonarQube Scan') {
+        environment {
+          SONAR_HOST_URL = "http://sonarqube.localhost.com"
+          SONAR_TOKEN = credentials('sonar-scanner-cli')
+        }
+        steps {
+          sonarqubeScan{}
+        }
+        when {
+          anyOf {
+            branch pattern: 'develop'
+            branch pattern: 'release-v*'
+            branch pattern: 'feature-*'
+            branch pattern: 'bugfix-*'
+            branch pattern: 'hotfix-*'
+            branch pattern: 'v*'
+          }
+        }
+      }
+    }
   }
 }
