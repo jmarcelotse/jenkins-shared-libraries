@@ -11,7 +11,7 @@ def call (body) {
 
          sonar-scanner -X \
          -Dsonar.token=${SONAR_TOKEN} \
-         -Dsonar.projectKey=${JOB_NAME%/*}-${GIT_BRANCH}
+         -Dsonar.projectKey=${JOB_NAME%/*}-$GIT_BRANCH
         '''
     }
 
