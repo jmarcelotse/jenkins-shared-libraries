@@ -12,43 +12,41 @@ def call (body) {
       }
     }
     stages {
-
       stage('Unit test') {
+        steps {
+          pythonUnitTest{}
+        }
         when {
           anyOf {
-            branch 'develop'
+            branch pattern: 'develop'
             branch pattern: 'release-v*'
             branch pattern: 'feature-*'
             branch pattern: 'bugfix-*'
             branch pattern: 'hotfix-*'
-            tag    pattern: 'v*'
+            branch pattern: 'v*'
           }
-        }
-        steps {
-          pythonUnitTest{}
         }
       }
 
       stage('SonarQube Scan') {
-        when {
-          anyOf {
-            branch 'develop'
-            branch pattern: 'release-v*'
-            branch pattern: 'feature-*'
-            branch pattern: 'bugfix-*'
-            branch pattern: 'hotfix-*'
-            tag    pattern: 'v*'
-          }
-        }
         environment {
           SONAR_HOST_URL = "http://sonarqube.localhost.com"
-          SONAR_TOKEN    = credentials('sonar-scanner-cli')
+          SONAR_TOKEN = credentials('sonar-scanner-cli')
         }
         steps {
           sonarqubeScan{}
         }
+        when {
+          anyOf {
+            branch pattern: 'develop'
+            branch pattern: 'release-v*'
+            branch pattern: 'feature-*'
+            branch pattern: 'bugfix-*'
+            branch pattern: 'hotfix-*'
+            branch pattern: 'v*'
+          }
+        }
       }
-
     }
   }
 }
