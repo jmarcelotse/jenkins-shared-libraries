@@ -7,15 +7,11 @@ def call (body) {
 
     container('sonar-scanner-cli') {
         sh '''
-            PROJECT_NAME=$(echo ${JOB_NAME} | cut -d'/' -f1)
-            BRANCH_NAME=$(echo ${GIT_BRANCH} | sed 's|origin/||')
-            PROJECT_KEY="${PROJECT_NAME}-${BRANCH_NAME}"
-            
-            echo "Project Key: ${PROJECT_KEY}"
-            
-            sonar-scanner -X \
-              -Dsonar.token=${SONAR_TOKEN} \
-              -Dsonar.projectKey=${PROJECT_KEY}
+        echo "JOB_NAME= ${JOB_NAME}"
+
+         sonar-scanner -X \
+         -Dsonar.token=${SONAR_TOKEN} \
+         -Dsonar.projectKey=${JOB_NAME%/*}-${GIT_BRANCH}
         '''
     }
 
