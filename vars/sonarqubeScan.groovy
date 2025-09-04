@@ -7,7 +7,7 @@ def call (body) {
 
     container('sonar-scanner-cli') {
         sh '''
-        echo "JOB_NAME=${env.JOB_NAME}"
+        echo "JOB_NAME=${JOB_NAME}"
 
          sonar-scanner -X \
          -Dsonar.token=${SONAR_TOKEN} \
