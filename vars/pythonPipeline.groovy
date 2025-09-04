@@ -27,8 +27,7 @@ def call (body) {
           }
         }
       }
-    }
-    stages {
+
       stage('SonarQube Scan') {
         environment {
           SONAR_HOST_URL = "http://sonarqube.localhost.com"
