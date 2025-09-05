@@ -15,7 +15,7 @@ def call (body) {
          -Dsonar.token=${SONAR_TOKEN} \
          -Dsonar.projectKey=${JOB_NAME%/*}-$GIT_BRANCH \
          -Dsonar.sources=. \
-         -Dsonar.exclusions=venv/**,tests/**,.pytest_cache/**
+         -Dsonar.exclusions=venv/**,tests/**,.pytest_cache/** \
          -Dsonar.qualitygate.wait=true
         '''
     }
