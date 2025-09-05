@@ -16,7 +16,7 @@ def call (body) {
          -Dsonar.projectKey=${JOB_NAME%/*}-$GIT_BRANCH \
          -Dsonar.sources=. \
          -Dsonar.exclusions=venv/**,tests/**,.pytest_cache/**
-         -Dqualitygate.wait=true
+         -Dsonar.qualitygate.wait=true
         '''
     }
 
