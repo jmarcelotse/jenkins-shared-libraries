@@ -31,7 +31,7 @@ def call (body) {
       stage('SonarQube Scan') {
         environment {
           SONAR_HOST_URL = "http://sonarqube.localhost.com"
-          SONAR_TOKEN = credentials('sonar-scanner-cli')
+          SONAR_TOKEN = credentials('sonnar-scanner-cli')
         }
         steps {
           sonarqubeScan{}
